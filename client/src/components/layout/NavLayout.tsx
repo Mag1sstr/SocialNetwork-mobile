@@ -1,6 +1,24 @@
+import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 function NavLayout() {
+  const [visible, setVisible] = useState(
+    () => !sessionStorage.getItem("loadShown"),
+  );
+
+  useEffect(() => {
+    if (!visible) {
+      return;
+    }
+
+    sessionStorage.setItem("loadShown", "true");
+
+    const timer = setTimeout(() => {
+      setVisible(false);
+    }, 1550);
+
+    return () => clearTimeout(timer);
+  }, []);
   const links = [
     {
       name: "Лента",
@@ -29,8 +47,11 @@ function NavLayout() {
   ];
   return (
     <div className="flex flex-col h-dvh">
-      <div className="overflow-y-auto min-h-0 flex-1 overscroll-contain">
-        <Outlet />
+      <div className="relative min-h-0 flex-1 ">
+        <div className="h-full overflow-y-auto overscroll-contain">
+          <Outlet />
+        </div>
+        <div className="pointer-events-none absolute inset-x-0 -bottom-1 h-16 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
       <footer className="grid grid-cols-4 mt-auto text-[14px] pb-6 pt-3.25 px-3.5 text-(--text) border-t border-(--border)">
         {links.map((link) => (
