@@ -5,8 +5,10 @@ function FeedPage() {
   const [openSearch, setOpenSearch] = useState(false);
   return (
     <>
-      {openSearch && <div className="fixed inset-0 backdrop-blur-xs z-0"></div>}
-      <header className="px-4 py-3.25 flex z-0 overflow-hidden">
+      {openSearch && (
+        <div className="fixed inset-0 backdrop-blur-xs z-10"></div>
+      )}
+      <header className="relative px-4 py-3.25 flex z-20 overflow-hidden">
         <AnimatePresence mode="popLayout" initial={false}>
           {!openSearch ? (
             <motion.img
@@ -65,6 +67,8 @@ function FeedPage() {
         </div>
       </form>
 
+      <PostCard />
+      <PostCard />
       <PostCard />
     </>
   );

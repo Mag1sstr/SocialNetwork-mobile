@@ -28,8 +28,10 @@ function NavLayout() {
     },
   ];
   return (
-    <div className="flex flex-col min-h-screen">
-      <Outlet />
+    <div className="flex flex-col h-screen">
+      <div className="overflow-scroll">
+        <Outlet />
+      </div>
       <footer className="grid grid-cols-4 mt-auto text-[14px] pb-6 pt-3.25 px-3.5 text-(--text) border-t border-(--border)">
         {links.map((link) => (
           <NavLink
