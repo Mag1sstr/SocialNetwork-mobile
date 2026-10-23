@@ -1,9 +1,17 @@
-function PostCard() {
+interface IProps {
+  img?: string;
+  userImg?: string;
+}
+function PostCard({ img, userImg }: IProps) {
   return (
     <article className="max-w-full bg-(--card-bg) p-3.5 border border-(--border) rounded-[18px] mx-4 mb-3.5">
       <div className=" flex items-center justify-between mb-2.5">
         <div className="flex items-center gap-2.5">
-          <img className="w-10 h-10 rounded-full" src="" alt="" />
+          <img
+            className="w-10 h-10 rounded-full"
+            src={userImg || "/user.jpg"}
+            alt=""
+          />
           <div>
             <p>Аня Ковалёва</p>
             <p>12 мин</p>
@@ -18,8 +26,8 @@ function PostCard() {
         без курсовой в голове 🌇
       </p>
       <img
-        className="w-full rounded-[14px] bg-black h-[190px] mb-3.5"
-        src=""
+        className="w-full rounded-[14px] object-cover bg-black h-[190px] mb-3.5"
+        src={img || "/z.jpg"}
         alt=""
       />
       <div className="flex justify-between text-(--text) text-sm">

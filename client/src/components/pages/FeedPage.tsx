@@ -54,7 +54,7 @@ function FeedPage() {
       </header>
 
       <form className="flex gap-2.5 p-4 items-center">
-        <div className="w-9 h-9 rounded-full border border-(--border)"></div>
+        <div className="w-12 h-12 rounded-full border border-(--border)"></div>
 
         <div className="bg-(--card-bg) border border-(--border) flex-1 py-2.75 px-3.5 pr-0 rounded-[19px] flex">
           <input
@@ -67,6 +67,9 @@ function FeedPage() {
         </div>
       </form>
 
+      {true && (
+        <div className="text-center p-5 text-sm text-(--text)">Нет постов.</div>
+      )}
       <PostCard />
       <PostCard />
       <PostCard />
