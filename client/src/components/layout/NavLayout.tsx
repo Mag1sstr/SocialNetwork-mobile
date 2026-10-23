@@ -28,8 +28,8 @@ function NavLayout() {
     },
   ];
   return (
-    <div className="flex flex-col h-screen">
-      <div className="overflow-scroll">
+    <div className="flex flex-col h-dvh">
+      <div className="overflow-y-auto min-h-0 flex-1 overscroll-contain">
         <Outlet />
       </div>
       <footer className="grid grid-cols-4 mt-auto text-[14px] pb-6 pt-3.25 px-3.5 text-(--text) border-t border-(--border)">
