@@ -1,0 +1,13 @@
+@import "tailwindcss";
+:root {
+  --prime: #6478ff;
+  --active: rgba(100, 120, 255, 0.16);
+  --prime-bg: #0b1020;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #929db7;
+  --card-bg: #121a2b;
+}
+body {
+  background-color: var(--prime-bg);
+  color: white;
+}

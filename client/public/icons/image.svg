@@ -1,0 +1,6 @@
+<svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18.000000" height="18.000000" fill="none" customFrame="#000000">
+	<rect id="image" width="18.000000" height="18.000000" x="0.000000" y="0.000000" />
+	<rect id="Прямоугольник 2" width="13.500000" height="13.500000" x="2.250000" y="2.250000" rx="1.500000" stroke="rgb(100,120,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.500000" />
+	<circle id="Эллипс 2" cx="6.75" cy="6.75" r="1.5" stroke="rgb(100,120,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.500000" />
+	<path id="Вектор 19" d="M15.75 11.25L13.4355 8.9355C13.2493 8.74938 13.0174 8.61554 12.7632 8.54741C12.5089 8.47929 12.2411 8.47929 11.9868 8.54741C11.7326 8.61554 11.5007 8.74938 11.3145 8.9355L4.5 15.75" fill-rule="nonzero" stroke="rgb(100,120,255)" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.500000" />
+</svg>
