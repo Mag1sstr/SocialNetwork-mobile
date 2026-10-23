@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 function PostCard() {
   return (
     <article className="max-w-full bg-(--card-bg) p-3.5 border border-(--border) rounded-[18px] mx-4">
@@ -14,10 +15,15 @@ function PostCard() {
         Вчера дошли до смотровой на Воробьёвых — идеальный закат и наконец-то
         без курсовой в голове 🌇
       </p>
-      <img className="w-full rounded-[14px] bg-black h-[190px]" src="" alt="" />
-      <div className="flex justify-between">
-        <button>
-          <img src="/icons/like.sbg" alt="" />
+      <img
+        className="w-full rounded-[14px] bg-black h-[190px] mb-3.5"
+        src=""
+        alt=""
+      />
+      <div className="flex justify-between text-(--text)">
+        <button className="flex gap-1.5">
+          <img src="/icons/like.svg" alt="" />
+          <p>0</p>
         </button>
       </div>
     </article>

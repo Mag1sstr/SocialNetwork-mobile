@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap");
 @import "tailwindcss";
+
 :root {
   --prime: #6478ff;
   --active: rgba(100, 120, 255, 0.16);
@@ -10,4 +12,8 @@
 body {
   background-color: var(--prime-bg);
   color: white;
+  font-family: "Inter", sans-serif;
+}
+::-webkit-scrollbar {
+  display: none;
 }

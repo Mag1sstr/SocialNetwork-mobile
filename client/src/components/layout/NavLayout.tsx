@@ -37,7 +37,7 @@ function NavLayout() {
             key={link.name}
             draggable={false}
             className={({ isActive }) =>
-              `flex flex-col items-center gap-1.25 select-none transition-all [&>p]:transition-all [&>img]:transition-all ${isActive && "[&>img]:bg-(--active) [&>p]:text-(--prime)"}`
+              `flex flex-col items-center gap-1.25 select-none transition-all [&>p]:transition-all active:scale-90 [&>img]:transition-all ${isActive && "[&>img]:bg-(--active) [&>p]:text-(--prime)"}`
             }
           >
             {({ isActive }) => (
