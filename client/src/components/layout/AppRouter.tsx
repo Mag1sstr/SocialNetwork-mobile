@@ -1,19 +1,51 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import NavLayout from "./NavLayout";
 import FeedPage from "../pages/FeedPage";
 import AllChatsPage from "../pages/AllChatsPage";
-
+import { AnimatePresence, motion } from "motion/react";
+const pageVariants = {
+  initial: { opacity: 0, x: -20 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 20 },
+};
 function AppRouter() {
+  const location = useLocation();
   return (
-    <Routes>
-      <Route path="/" element={<NavLayout />}>
-        <Route index element={<FeedPage />} />
+    <AnimatePresence>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<NavLayout />}>
+          <Route
+            index
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <FeedPage />
+              </motion.div>
+            }
+          />
 
-        <Route path="/group" element={<div>G</div>} />
-        <Route path="/chat" element={<AllChatsPage />} />
-        <Route path="/profile" element={<div>P</div>} />
-      </Route>
-    </Routes>
+          <Route path="/group" element={<div>G</div>} />
+          <Route
+            path="/chat"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <AllChatsPage />
+              </motion.div>
+            }
+          />
+          <Route path="/profile" element={<div>P</div>} />
+        </Route>
+      </Routes>
+    </AnimatePresence>
   );
 }
 
