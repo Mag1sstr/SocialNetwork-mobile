@@ -3,12 +3,12 @@
   "name": "Мое Отличное Приложение",
   "icons": [
     {
-      "src": "./icons/logo.svg",
-      "type": "image/svg",
+      "src": "/logo.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": "/index.html",
+  "start_url": "/",
   "background_color": "#ffffff",
   "display": "standalone",
   "theme_color": "#000000"
