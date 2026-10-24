@@ -8,3 +8,10 @@ createRoot(document.getElementById("root")!).render(
     <App />
   </BrowserRouter>,
 );
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .register("/sw.js")
+    .then((reg) => console.log("PWA успешно подключен!", reg.scope))
+    .catch((err) => console.error("Ошибка PWA:", err));
+}
