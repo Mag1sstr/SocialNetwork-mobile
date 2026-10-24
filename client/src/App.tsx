@@ -7,8 +7,8 @@ function App() {
   const [screen, setScreen] = useState<"load" | "auth" | "app">("load");
   return (
     <>
-      {screen === "load" && <Load onComplete={() => setScreen("auth")} />}
-      {screen === "auth" && <AuthPage onSuccess={() => setScreen("app")} />}
+      {screen === "load" && <Load onComplete={() => setScreen("app")} />}
+      {/* {screen === "auth" && <AuthPage onSuccess={() => setScreen("app")} />} */}
       {screen === "app" && <AppRouter />}
     </>
   );
