@@ -67,9 +67,8 @@ function FeedPage() {
         </div>
       </form>
 
-      {true && (
-        <div className="text-center p-5 text-sm text-(--text)">Нет постов.</div>
-      )}
+      <div className="text-center p-5 text-sm text-(--text)">Нет постов.</div>
+
       <PostCard />
       <PostCard />
       <PostCard />
