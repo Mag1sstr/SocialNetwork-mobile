@@ -6,7 +6,7 @@ function ProfilePage() {
   return (
     <>
       <header className="px-4 py-3.5 flex items-center justify-between">
-        <h1>Профиль</h1>
+        <h1 className="font-semibold">Профиль</h1>
         <button>
           <img src="/icons/menu.svg" alt="" />
         </button>

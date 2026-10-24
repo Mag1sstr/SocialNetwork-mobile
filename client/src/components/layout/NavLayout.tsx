@@ -28,7 +28,7 @@ function NavLayout() {
       path: "/",
     },
     {
-      name: "Группы",
+      name: "Друзья",
       icon: "/icons/group.svg",
       activeIcon: "/icons/group-a.svg",
       path: "/group",
@@ -63,7 +63,7 @@ function NavLayout() {
             key={link.name}
             draggable={false}
             className={({ isActive }) =>
-              `flex flex-col items-center gap-1.25 select-none transition-all [&>p]:transition-all active:scale-90 [&>img]:transition-all ${isActive && "[&>img]:bg-(--active) [&>p]:text-(--prime)"}`
+              `flex flex-col items-center gap-1.25  select-none transition-all [&>p]:transition-all active:scale-90 [&>img]:transition-all ${isActive && "[&>img]:bg-(--active) [&>p]:text-(--prime)"}`
             }
           >
             {({ isActive }) => (
@@ -83,7 +83,7 @@ function NavLayout() {
                     draggable={false}
                   />
                 )}
-                <p>{link.name}</p>
+                <p className="leading-3">{link.name}</p>
               </>
             )}
           </NavLink>

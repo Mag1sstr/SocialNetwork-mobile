@@ -5,6 +5,7 @@ import AllChatsPage from "../pages/AllChatsPage";
 import { AnimatePresence, motion } from "motion/react";
 import SingleChatPage from "../pages/SingleChatPage";
 import ProfilePage from "../pages/ProfilePage";
+import FriendsPage from "../pages/FriendsPage";
 const pageVariants = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
@@ -30,7 +31,19 @@ function AppRouter() {
             }
           />
 
-          <Route path="/group" element={<div>G</div>} />
+          <Route
+            path="/group"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <FriendsPage />
+              </motion.div>
+            }
+          />
           <Route
             path="/chat"
             element={
