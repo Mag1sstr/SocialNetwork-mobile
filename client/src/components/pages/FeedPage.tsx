@@ -39,12 +39,12 @@ function FeedPage() {
         <div className="flex ml-auto shrink-0">
           <button
             onClick={() => setOpenSearch(!openSearch)}
-            className="p-2.5 cursor-pointer "
+            className="p-2.5 cursor-pointer"
           >
             {openSearch ? (
               <img src="/icons/close.svg" alt="" />
             ) : (
-              <img src="/icons/search.svg" alt="" />
+              <img src="/icons/search-feed.svg" alt="" />
             )}
           </button>
           <button className="p-2.5 cursor-pointer">

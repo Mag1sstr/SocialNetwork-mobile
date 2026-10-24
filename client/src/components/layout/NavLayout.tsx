@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 
 function NavLayout() {
+  const location = useLocation();
   const [visible, setVisible] = useState(
     () => !sessionStorage.getItem("loadShown"),
   );
@@ -51,7 +52,9 @@ function NavLayout() {
         <div className="h-full overflow-y-auto overscroll-contain">
           <Outlet />
         </div>
-        <div className="pointer-events-none absolute inset-x-0 -bottom-1 h-16 bg-gradient-to-t from-black/70 to-transparent" />
+        {location.pathname === "/" && (
+          <div className="pointer-events-none absolute inset-x-0 -bottom-1 h-16 bg-gradient-to-t from-black/70 to-transparent" />
+        )}
       </div>
       <footer className="grid grid-cols-4 mt-auto text-[14px] pb-6 pt-3.25 px-3.5 text-(--text) border-t border-(--border)">
         {links.map((link) => (

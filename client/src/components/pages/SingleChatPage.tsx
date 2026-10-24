@@ -25,7 +25,7 @@ function SingleChatPage() {
         </div>
       </header>
 
-      <main className="flex flex-col gap-3">
+      <main className="flex flex-col gap-3 px-4">
         <div className="flex items-end gap-2">
           <img
             src="/user.jpg"
@@ -39,6 +39,23 @@ function SingleChatPage() {
               Привет! Ты уже посмотрел задание по вебу?
             </p>
             <p className="text-(--text) text-xs">12:18</p>
+          </div>
+        </div>
+        <div
+          className={`flex items-end gap-2 ${"self-end flex-row-reverse [&_p]:bg-(--prime)"}`}
+        >
+          <img
+            src="/user.jpg"
+            alt=""
+            width={26}
+            height={26}
+            className="rounded-full"
+          />
+          <div className="flex flex-col max-w-[212px]">
+            <p className="bg-(--card-bg) px-3.25 py-2.5 rounded-2xl rounded-tl-sm mb-1">
+              Привет!
+            </p>
+            <span className="text-(--text) text-xs self-end">12:18</span>
           </div>
         </div>
       </main>

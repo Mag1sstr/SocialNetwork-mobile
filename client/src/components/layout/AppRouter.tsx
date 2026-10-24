@@ -4,6 +4,7 @@ import FeedPage from "../pages/FeedPage";
 import AllChatsPage from "../pages/AllChatsPage";
 import { AnimatePresence, motion } from "motion/react";
 import SingleChatPage from "../pages/SingleChatPage";
+import ProfilePage from "../pages/ProfilePage";
 const pageVariants = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
@@ -43,7 +44,19 @@ function AppRouter() {
               </motion.div>
             }
           />
-          <Route path="/profile" element={<div>P</div>} />
+          <Route
+            path="/profile"
+            element={
+              <motion.div
+                variants={pageVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+              >
+                <ProfilePage />
+              </motion.div>
+            }
+          />
         </Route>
         <Route
           path="/chat/:id"
