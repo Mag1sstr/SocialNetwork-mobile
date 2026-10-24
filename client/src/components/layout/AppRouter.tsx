@@ -3,6 +3,7 @@ import NavLayout from "./NavLayout";
 import FeedPage from "../pages/FeedPage";
 import AllChatsPage from "../pages/AllChatsPage";
 import { AnimatePresence, motion } from "motion/react";
+import SingleChatPage from "../pages/SingleChatPage";
 const pageVariants = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
@@ -44,6 +45,19 @@ function AppRouter() {
           />
           <Route path="/profile" element={<div>P</div>} />
         </Route>
+        <Route
+          path="/chat/:id"
+          element={
+            <motion.div
+              variants={pageVariants}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+            >
+              <SingleChatPage />
+            </motion.div>
+          }
+        />
       </Routes>
     </AnimatePresence>
   );

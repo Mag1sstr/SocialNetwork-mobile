@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function AllChatsPage() {
   const [tabs, setTabs] = useState<"all" | "groups" | "personal">("all");
@@ -53,7 +54,10 @@ function AllChatsPage() {
         </div>
       </div>
       <div className="px-4 flex flex-col gap-0.5">
-        <div className="px-1.5 py-2.75 rounded-[14px] flex items-center justify-between gap-2.75 bg-(--card-bg)">
+        <Link
+          to={"/chat/ef"}
+          className="px-1.5 py-2.75 rounded-[14px] flex items-center justify-between gap-2.75 bg-(--card-bg)"
+        >
           <div className="flex items-center gap-2.75 min-w-0 flex-1">
             <img
               width={44}
@@ -76,7 +80,7 @@ function AllChatsPage() {
             <p>12:24</p>
             <div className="w-4.5 h-4.5 rounded-full bg-(--prime) "></div>
           </div>
-        </div>
+        </Link>
         <div className="px-1.5 py-2.75 rounded-[14px] flex items-center justify-between gap-2.75 bg-(--card-bg)">
           <div className="flex items-center gap-2.75 min-w-0 flex-1">
             <img

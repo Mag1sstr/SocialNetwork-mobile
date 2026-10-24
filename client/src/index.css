@@ -17,3 +17,9 @@ body {
 ::-webkit-scrollbar {
   display: none;
 }
+button {
+  img {
+    user-select: none;
+    pointer-events: none;
+  }
+}
