@@ -3,7 +3,7 @@
   "name": "Мое Отличное Приложение",
   "icons": [
     {
-      "src": "/icons/logo.svg",
+      "src": "./icons/logo.svg",
       "type": "image/svg",
       "sizes": "512x512"
     }

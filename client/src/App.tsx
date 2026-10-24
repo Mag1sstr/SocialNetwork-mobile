@@ -3,7 +3,7 @@ import AppRouter from "./components/layout/AppRouter";
 import Load from "./components/layout/Load";
 
 function App() {
-  const [screen, setScreen] = useState<"load" | "auth" | "app">("load");
+  const [screen, setScreen] = useState<"load" | "auth" | "app">("app");
   return (
     <>
       {screen === "load" && <Load onComplete={() => setScreen("app")} />}
