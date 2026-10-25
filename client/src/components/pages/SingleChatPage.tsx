@@ -1,6 +1,10 @@
+import EmojiPicker from "emoji-picker-react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function SingleChatPage() {
+  const [openEmoji, setOpenEmoji] = useState(false);
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
   return (
     <div className="flex flex-col h-dvh">
@@ -60,12 +64,27 @@ function SingleChatPage() {
         </div>
       </main>
 
-      <footer className="mt-auto p-3 pb-5.75 border-t border-(--border) flex gap-2.5">
+      <footer className="relative mt-auto p-3 pb-5.75 border-t border-(--border) flex gap-2.5">
+        <EmojiPicker
+          onEmojiClick={(e) => setValue((prev) => prev + e.emoji)}
+          style={{
+            position: "absolute",
+            visibility: openEmoji ? "visible" : "hidden",
+            transition: ".5s",
+            opacity: openEmoji ? "1" : "0",
+            right: 20,
+            bottom: "100%",
+          }}
+          colorScheme="dark"
+        />
+
         <button>
           <img src="/icons/plus.svg" alt="" />
         </button>
         <div className="bg-(--card-bg) border border-(--border) flex-1 py-2.75 px-3.5 rounded-[19px] flex gap-2.5">
           <input
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
             className="text-white w-full outline-none"
             type="text"
             placeholder="Сообщение…"
@@ -74,7 +93,7 @@ function SingleChatPage() {
             <button>
               <img src="/icons/img.svg" alt="" />
             </button>
-            <button>
+            <button onClick={() => setOpenEmoji((prev) => !prev)}>
               <img src="/icons/smile.svg" alt="" />
             </button>
             <button className="w-7.5 h-7.5 rounded-full flex items-center justify-center bg-(--prime)">
