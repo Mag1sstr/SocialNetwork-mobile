@@ -56,7 +56,7 @@ function SingleChatPage() {
             className="rounded-full"
           />
           <div className="flex flex-col max-w-[212px]">
-            <p className="bg-(--card-bg) px-3.25 py-2.5 rounded-2xl rounded-tl-sm mb-1">
+            <p className="bg-(--card-bg) px-3.25 py-2.5 rounded-2xl rounded-tr-sm mb-1">
               Привет!
             </p>
             <span className="text-(--text) text-xs self-end">12:18</span>
