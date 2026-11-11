@@ -1,25 +1,35 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { IUser } from "./apiTypes";
 
 export const api = createApi({
   reducerPath: "api",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:5000/api",
+    credentials: "include",
+  }),
   endpoints: (builder) => ({
-    getMe: builder.query({
+    getMe: builder.query<{ user: IUser }, void>({
       query: () => ({ url: "/auth/me" }),
     }),
-    login: builder.mutation<IUser, { login: string; password: string }>({
+    login: builder.mutation<
+      { message: string; user: IUser },
+      { login: string; password: string }
+    >({
       query: (body) => ({
-        url: "/auth/me",
+        url: "/auth/login",
         method: "POST",
         body,
       }),
     }),
     register: builder.mutation<
-      {},
+      {
+        message: string;
+        user: IUser;
+      },
       { username: string; email: string; password: string }
     >({
-      query: (body) => ({ url: "/register", method: "POST", body }),
+      query: (body) => ({ url: "/auth/register", method: "POST", body }),
     }),
   }),
 });
+export const { useGetMeQuery, useLoginMutation, useRegisterMutation } = api;

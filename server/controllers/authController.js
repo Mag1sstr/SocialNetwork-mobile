@@ -52,11 +52,11 @@ export async function register(req, res, next) {
       });
     }
 
-    if (password.length < 8 || password.length > 72) {
-      return res.status(400).json({
-        message: "Пароль должен содержать от 8 до 72 символов",
-      });
-    }
+    // if (password.length < 8 || password.length > 72) {
+    //   return res.status(400).json({
+    //     message: "Пароль должен содержать от 8 до 72 символов",
+    //   });
+    // }
 
     // Хешируем пароль до записи в базу.
     const passwordHash = await bcrypt.hash(password, 12);

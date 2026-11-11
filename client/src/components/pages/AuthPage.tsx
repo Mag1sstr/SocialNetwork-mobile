@@ -1,39 +1,59 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { useLoginMutation, useRegisterMutation } from "../../api/api";
+import { useAuth } from "../../contexts/AuthContext";
 
 type AuthMode = "login" | "register";
 
 interface AuthPageProps {
-  onSuccess?: (data: { username: string }) => void;
+  onSuccess?: () => void;
 }
 
 export default function AuthPage({ onSuccess }: AuthPageProps) {
   const [mode, setMode] = useState<AuthMode>("register");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
+  const [register] = useRegisterMutation();
+  const [login] = useLoginMutation();
+
+  const { setUser } = useAuth();
+
   const isRegister = mode === "register";
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
 
-    const cleanUsername = username.trim();
+    try {
+      if (mode === "login") {
+        const res = await login({ login: username, password }).unwrap();
+        setUser(res.user);
+        onSuccess?.();
+        return;
+      }
 
-    if (!/^[a-zA-Z0-9_]{3,20}$/.test(cleanUsername)) {
-      setError("Ник: 3–20 символов, латиница, цифры и _");
-      return;
+      const cleanUsername = username.trim();
+
+      if (!/^[a-zA-Z0-9_]{3,20}$/.test(cleanUsername)) {
+        setError("Ник: 3–20 символов, латиница, цифры и _");
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setError("Неккоректный email");
+        return;
+      }
+
+      const res = await register({ username, email, password }).unwrap();
+      setUser(res.user);
+      onSuccess?.();
+    } catch (error) {
+      setError((error as { message: string }).message);
     }
-
-    if (password.length < 8) {
-      setError("Пароль должен содержать минимум 8 символов");
-      return;
-    }
-
-    // Здесь подключается API регистрации или входа.
-    onSuccess?.({ username: cleanUsername });
   }
 
   function changeMode(nextMode: AuthMode) {
@@ -78,7 +98,7 @@ export default function AuthPage({ onSuccess }: AuthPageProps) {
         </div>
 
         {/* Форма */}
-        <div className="rounded-[28px] border border-(--border) bg-(--card-bg)/80 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.2)] backdrop-blur-xl sm:p-7">
+        <div className="rounded-[28px]  border border-(--border) bg-(--card-bg)/80 p-5 shadow-[0_20px_80px_rgba(0,0,0,0.2)] backdrop-blur-xl sm:p-7">
           <div className="mb-6">
             <h2 className="text-xl font-semibold">
               {isRegister ? "Создать аккаунт" : "С возвращением"}
@@ -126,33 +146,80 @@ export default function AuthPage({ onSuccess }: AuthPageProps) {
               onSubmit={handleSubmit}
               className="space-y-4"
             >
-              <div>
-                <label
-                  htmlFor="username"
-                  className="mb-2 block text-sm font-medium"
-                >
-                  Уникальный никнейм
-                </label>
+              {mode === "register" ? (
+                <>
+                  <div>
+                    <label
+                      htmlFor="username"
+                      className="mb-2 block text-sm font-medium"
+                    >
+                      Уникальный никнейм
+                    </label>
 
-                <div className="flex h-12 items-center rounded-xl border border-(--border) bg-(--prime-bg) px-3.5 transition-colors focus-within:border-(--prime)">
-                  <span className="mr-2 text-(--text)">@</span>
-                  <input
-                    id="username"
-                    type="text"
-                    autoComplete="username"
-                    required
-                    minLength={3}
-                    maxLength={20}
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    placeholder="yourname"
-                    className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-(--text)/50"
-                  />
+                    <div className="flex h-12 items-center rounded-xl border border-(--border) bg-(--prime-bg) px-3.5 transition-colors focus-within:border-(--prime)">
+                      <span className="mr-2 text-(--text)">@</span>
+                      <input
+                        id="username"
+                        type="text"
+                        autoComplete="username"
+                        required
+                        minLength={3}
+                        maxLength={20}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="yourname"
+                        className="min-w-0 flex-1 bg-transparent  text-sm outline-none placeholder:text-(--text)/50 "
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="mb-2 block text-sm font-medium"
+                    >
+                      Email
+                    </label>
+
+                    <div className="flex h-12 items-center rounded-xl border border-(--border) bg-(--prime-bg) px-3.5 transition-colors focus-within:border-(--prime)">
+                      <input
+                        id="email"
+                        type="text"
+                        autoComplete="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-(--text)/50"
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <div>
+                  <label
+                    htmlFor="username"
+                    className="mb-2 block text-sm font-medium"
+                  >
+                    Username / Email
+                  </label>
+
+                  <div className="flex h-12 items-center rounded-xl border border-(--border) bg-(--prime-bg) px-3.5 transition-colors focus-within:border-(--prime)">
+                    <span className="mr-2 text-(--text)">@</span>
+                    <input
+                      id="username"
+                      type="text"
+                      autoComplete="username"
+                      required
+                      minLength={3}
+                      maxLength={20}
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      placeholder="yourname"
+                      className="min-w-0 flex-1 bg-transparent  text-sm outline-none placeholder:text-(--text)/50 "
+                    />
+                  </div>
                 </div>
-                <p className="mt-1.5 text-xs text-(--text)">
-                  Латиница, цифры и нижнее подчёркивание
-                </p>
-              </div>
+              )}
 
               <div>
                 <label
@@ -170,10 +237,8 @@ export default function AuthPage({ onSuccess }: AuthPageProps) {
                       isRegister ? "new-password" : "current-password"
                     }
                     required
-                    minLength={8}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Минимум 8 символов"
                     className="min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-(--text)/50"
                   />
 

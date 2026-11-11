@@ -1,12 +1,23 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
+import type { IUser } from "../api/apiTypes";
 
-export const AuthContext = createContext({});
+interface IAuthContext {
+  user: IUser | null;
+  setUser: (u: IUser | null) => void;
+}
+
+export const AuthContext = createContext({} as IAuthContext);
 
 function AuthContextProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("token") || null);
+  const [user, setUser] = useState<IUser | null>(null);
 
-  return <AuthContext.Provider value={{}}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
 
 export default AuthContextProvider;
+
+export const useAuth = () => useContext(AuthContext);

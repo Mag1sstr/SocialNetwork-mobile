@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useGetMeQuery } from "../../api/api";
 
 function ProfilePage() {
   const [tabs, setTabs] = useState<"all" | "groups" | "personal">("all");
+
+  const { data } = useGetMeQuery();
 
   return (
     <>
@@ -20,7 +23,7 @@ function ProfilePage() {
           alt=""
         />
         <div className="flex flex-col items-center">
-          <p className="text-xl font-bold">Марина Соловьёва</p>
+          <p className="text-xl font-bold">{data?.user.username}</p>
           <p className="text-(--prime) text-sm">@marina.sol</p>
         </div>
         <p className="text-center text-xs">

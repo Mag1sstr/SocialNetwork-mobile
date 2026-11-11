@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react";
 import SingleChatPage from "../pages/SingleChatPage";
 import ProfilePage from "../pages/ProfilePage";
 import FriendsPage from "../pages/FriendsPage";
+import AdminPage from "../pages/AdminPage";
 const pageVariants = {
   initial: { opacity: 0, x: -20 },
   animate: { opacity: 1, x: 0 },
@@ -84,6 +85,8 @@ function AppRouter() {
             </motion.div>
           }
         />
+
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </AnimatePresence>
   );
