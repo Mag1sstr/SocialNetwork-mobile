@@ -6,6 +6,10 @@ function AdminPage() {
           <h1>Админ панель</h1>
         </div>
       </header>
+      <main className="flex">
+        <aside></aside>
+        <section></section>
+      </main>
     </div>
   );
 }
