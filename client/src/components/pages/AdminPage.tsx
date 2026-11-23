@@ -8,7 +8,7 @@ function AdminPage() {
       </header>
       <main className="flex">
         <aside></aside>
-        <section></section>
+        {/* <section></section> */}
       </main>
     </div>
   );
